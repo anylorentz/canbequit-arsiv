@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kick VOD Arşivi | canbequit & rraenee</title>
+  <title>canbequit | Kick VOD Platformu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -59,14 +59,14 @@
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 1rem;
     }
 
     .kick-logo {
       background: var(--kick);
       color: #000;
       font-weight: 900;
-      font-size: 0.95rem;
+      font-size: 1rem;
       padding: 0.3rem 0.65rem;
       border-radius: 6px;
       letter-spacing: 0.5px;
@@ -74,45 +74,45 @@
       box-shadow: 0 0 18px var(--kick-glow);
     }
 
-    /* Channel Tabs in Navbar */
-    .channel-tabs {
+    .channel-pill {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.65rem;
+      padding: 0.3rem 0.75rem 0.3rem 0.35rem;
       background: var(--surface);
-      padding: 0.25rem;
-      border-radius: 999px;
       border: 1px solid var(--border);
+      border-radius: 999px;
     }
 
-    .tab-btn {
-      background: transparent;
-      color: var(--text-dim);
-      border: none;
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.16s ease;
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #53fc18, #128000);
+      color: #000;
+      font-weight: 900;
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      justify-content: center;
+      border: 2px solid var(--kick);
     }
 
-    .tab-btn:hover {
-      color: var(--text);
+    .channel-name {
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
     }
 
-    .tab-btn.active {
-      background: var(--kick);
-      color: #000;
-      box-shadow: 0 2px 10px var(--kick-glow);
+    .verified-icon {
+      color: var(--kick);
+      display: inline-flex;
+      align-items: center;
     }
 
     .nav-center {
       flex: 1;
-      max-width: 480px;
+      max-width: 520px;
       display: flex;
       align-items: center;
       gap: 0.6rem;
@@ -128,9 +128,9 @@
       background: var(--bg-elevated);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 0.55rem 1rem 0.55rem 2.4rem;
+      padding: 0.6rem 1rem 0.6rem 2.5rem;
       border-radius: 999px;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       outline: none;
       transition: all 0.2s;
       user-select: text;
@@ -144,7 +144,7 @@
 
     .search-icon {
       position: absolute;
-      left: 0.85rem;
+      left: 0.9rem;
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-muted);
@@ -154,9 +154,9 @@
       background: var(--surface);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 0.5rem 0.85rem;
+      padding: 0.55rem 0.9rem;
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-weight: 600;
       outline: none;
       cursor: pointer;
@@ -170,6 +170,27 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
+    }
+
+    .btn-kick {
+      background: var(--kick);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.84rem;
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+
+    .btn-kick:hover {
+      background: var(--kick-hover);
+      transform: translateY(-1px);
     }
 
     .btn-ghost {
@@ -192,7 +213,7 @@
       color: var(--kick);
     }
 
-    /* YouTube Watch Layout (2 Columns) */
+    /* YouTube Watch Layout */
     .watch-container {
       max-width: 1720px;
       margin: 0 auto;
@@ -207,7 +228,7 @@
       grid-template-columns: 1fr;
     }
 
-    /* Primary Column: Video Player + Info */
+    /* Primary Column */
     .primary-col {
       display: flex;
       flex-direction: column;
@@ -305,17 +326,6 @@
       border-radius: 6px;
     }
 
-    .tag-channel {
-      background: #1f271d;
-      color: var(--kick);
-      font-weight: 800;
-      font-size: 0.74rem;
-      padding: 0.22rem 0.6rem;
-      border-radius: 6px;
-      text-transform: uppercase;
-      border: 1px solid rgba(83, 252, 24, 0.3);
-    }
-
     .tag-neutral {
       background: var(--bg-elevated);
       color: var(--text-dim);
@@ -372,12 +382,6 @@
       gap: 0.35rem;
     }
 
-    .verified-icon {
-      color: var(--kick);
-      display: inline-flex;
-      align-items: center;
-    }
-
     .streamer-text p {
       font-size: 0.8rem;
       color: var(--text-dim);
@@ -390,27 +394,7 @@
       flex-wrap: wrap;
     }
 
-    .btn-kick {
-      background: var(--kick);
-      color: #000;
-      font-weight: 800;
-      font-size: 0.84rem;
-      padding: 0.55rem 1rem;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      transition: all 0.18s;
-    }
-
-    .btn-kick:hover {
-      background: var(--kick-hover);
-      transform: translateY(-1px);
-    }
-
-    /* Secondary Column: YouTube Playlist */
+    /* Secondary Column: YouTube Up Next */
     .secondary-col {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -471,7 +455,6 @@
       border-radius: 999px;
     }
 
-    /* Horizontal Card */
     .upnext-card {
       display: grid;
       grid-template-columns: 140px 1fr;
@@ -523,24 +506,12 @@
       transform: scale(1.1);
     }
 
-    .upnext-badge-channel {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      background: rgba(0, 0, 0, 0.88);
-      color: var(--kick);
-      font-size: 0.62rem;
-      font-weight: 800;
-      padding: 0.1rem 0.38rem;
-      border-radius: 4px;
-    }
-
     .upnext-badge-hd {
       position: absolute;
       bottom: 4px;
       right: 4px;
       background: rgba(0, 0, 0, 0.88);
-      color: #fff;
+      color: var(--kick);
       font-size: 0.62rem;
       font-weight: 800;
       padding: 0.1rem 0.35rem;
@@ -573,7 +544,7 @@
       color: var(--text-dim);
     }
 
-    /* Catalog Section */
+    /* Full Catalog */
     .catalog-section {
       max-width: 1720px;
       margin: 0 auto;
@@ -656,18 +627,16 @@
       border-radius: 5px;
     }
 
-    .vod-card-channel {
+    .vod-card-tag {
       position: absolute;
-      top: 8px;
+      bottom: 8px;
       right: 8px;
       background: rgba(7, 8, 9, 0.9);
       color: var(--kick);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 800;
-      padding: 0.2rem 0.55rem;
+      padding: 0.18rem 0.48rem;
       border-radius: 5px;
-      border: 1px solid rgba(83, 252, 24, 0.35);
-      text-transform: uppercase;
     }
 
     .vod-card-body {
@@ -707,36 +676,21 @@
         max-height: 520px;
       }
     }
-
-    @media (max-width: 768px) {
-      .navbar {
-        height: auto;
-        padding: 0.75rem 1rem;
-        flex-wrap: wrap;
-      }
-      .channel-tabs {
-        order: 2;
-      }
-      .nav-center {
-        order: 3;
-        max-width: 100%;
-        width: 100%;
-      }
-    }
   </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;">
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-left">
-      <span class="kick-logo">KICK ARŞİV</span>
-      
-      <!-- Multi-Channel Selector Tabs -->
-      <div class="channel-tabs" id="channelTabs">
-        <button class="tab-btn active" data-chan="all">TÜMÜ</button>
-        <button class="tab-btn" data-chan="canbequit">canbequit</button>
-        <button class="tab-btn" data-chan="rraenee">rraenee</button>
+      <span class="kick-logo">KICK VOD</span>
+      <div class="channel-pill">
+        <div class="avatar">C</div>
+        <span class="channel-name">canbequit</span>
+        <span class="verified-icon" title="Doğrulanmış Yayıncı">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </span>
       </div>
     </div>
 
@@ -746,7 +700,7 @@
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" id="searchInput" placeholder="Yayın veya oyun ara (Örn: Eightborn, Stake, RP)..." />
+        <input type="text" id="searchInput" placeholder="Yayın ara (Örn: Fenerbahçe, Stake, VIP, 2026-10)..." />
       </div>
       <select id="sortSelect" class="sort-select">
         <option value="newest">En Yeni</option>
@@ -761,17 +715,18 @@
         </svg>
         <span>Sinema Modu</span>
       </button>
+      <a href="https://kick.com/canbequit" target="_blank" rel="noopener" class="btn-kick">
+        <span>Kick Kanalı</span>
+      </a>
     </div>
   </nav>
 
-  <!-- YouTube Watch Layout -->
   <div class="watch-container" id="watchContainer">
-    <!-- Left Column: Video Player & Details -->
     <div class="primary-col">
       <div class="player-shell" id="playerShell">
         <div class="security-watermark">
           <span class="security-dot"></span>
-          <span>KORUMALI YAYIN • KICK VOD PLATFORMU</span>
+          <span>KORUMALI YAYIN • CANBEQUIT VOD</span>
         </div>
         <div class="popout-shield" title="İndirme Korumalı"></div>
         <iframe
@@ -785,10 +740,9 @@
 
       <div class="video-details-card">
         <div class="badges-row">
-          <span class="tag-channel" id="currentChannelBadge">KANAL: -</span>
           <span class="tag-kick">● 1080p60 FULL HD</span>
           <span class="tag-neutral" id="currentDateBadge">Tarih: -</span>
-          <span class="tag-neutral">🔒 İndirme Korumalı</span>
+          <span class="tag-neutral">🔒 İndirme Korumalı Stream</span>
         </div>
 
         <div class="video-title-row">
@@ -797,33 +751,32 @@
 
         <div class="channel-bar">
           <div class="streamer-info">
-            <div class="streamer-avatar-lg" id="streamerAvatar">K</div>
+            <div class="streamer-avatar-lg">C</div>
             <div class="streamer-text">
               <h3>
-                <span id="streamerName">Yayıncı</span>
+                canbequit
                 <span class="verified-icon">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                   </svg>
                 </span>
               </h3>
-              <p>Resmi Kick Yayın Kaydı (VOD)</p>
+              <p>Resmi Yayın Arşivi • Sadece Platform İçi İzleme</p>
             </div>
           </div>
 
           <div class="player-controls-bar">
-            <button class="btn-ghost" id="prevBtn">◀ Önceki</button>
-            <button class="btn-kick" id="nextBtn">Sonraki ▶</button>
+            <button class="btn-ghost" id="prevBtn">◀ Önceki Yayın</button>
+            <button class="btn-kick" id="nextBtn">Sonraki Yayın ▶</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Right Column: Up Next Playlist -->
     <aside class="secondary-col">
       <div class="playlist-header">
         <div class="playlist-title">
-          <span>Yayın Sıralaması</span>
+          <span>Sıradaki Yayınlar</span>
         </div>
         <span class="playlist-count" id="playlistCount">0 VOD</span>
       </div>
@@ -831,12 +784,11 @@
     </aside>
   </div>
 
-  <!-- Full Archive Grid -->
   <section class="catalog-section">
     <div class="section-heading">
       <h2>
         <span class="kick-dot"></span>
-        <span id="catalogHeading">Tüm Yayınlar</span>
+        <span>Tüm Yayın Arşivi</span>
       </h2>
     </div>
     <div class="catalog-grid" id="catalogGrid"></div>
@@ -857,14 +809,12 @@
     let allVideos = [];
     let filteredVideos = [];
     let currentIndex = 0;
-    let selectedChannel = 'all';
 
     function parseVideoMeta(item) {
       const cleanName = item.name.replace(/\.mp4$/i, '');
       const m = cleanName.match(/^(\d{4}-\d{2}-\d{2})\s*-\s*(.+)$/);
       return {
         id: item.id,
-        channel: item.channel || (item.name.toLowerCase().includes('eightborn') || item.name.toLowerCase().includes('rp') ? 'rraenee' : 'canbequit'),
         date: m ? m[1] : (item.modifiedTime ? item.modifiedTime.slice(0, 10) : 'Tarihsiz'),
         title: m ? m[2].trim() : cleanName,
         size: Number(item.size || 0)
@@ -881,10 +831,7 @@
 
       document.getElementById('videoFrame').src = `https://drive.google.com/file/d/${v.id}/preview`;
       document.getElementById('currentTitle').textContent = v.title;
-      document.getElementById('currentDateBadge').textContent = `Tarih: ${v.date}`;
-      document.getElementById('currentChannelBadge').textContent = `KANAL: ${v.channel}`;
-      document.getElementById('streamerName').textContent = v.channel;
-      document.getElementById('streamerAvatar').textContent = v.channel.charAt(0).toUpperCase();
+      document.getElementById('currentDateBadge').textContent = `Yayın Tarihi: ${v.date}`;
 
       document.querySelectorAll('[data-vid]').forEach(el => {
         el.classList.toggle('active', el.dataset.vid === v.id);
@@ -899,11 +846,9 @@
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const sort = document.getElementById('sortSelect').value;
 
-      filteredVideos = allVideos.filter(v => {
-        const matchesChan = selectedChannel === 'all' || v.channel.toLowerCase() === selectedChannel.toLowerCase();
-        const matchesQuery = v.title.toLowerCase().includes(q) || v.date.toLowerCase().includes(q) || v.channel.toLowerCase().includes(q);
-        return matchesChan && matchesQuery;
-      });
+      filteredVideos = allVideos.filter(v =>
+        v.title.toLowerCase().includes(q) || v.date.toLowerCase().includes(q)
+      );
 
       filteredVideos.sort((a, b) => {
         if (sort === 'newest') return b.date.localeCompare(a.date) || b.title.localeCompare(a.title);
@@ -912,63 +857,51 @@
       });
 
       document.getElementById('playlistCount').textContent = `${filteredVideos.length} VOD`;
-      document.getElementById('catalogHeading').textContent = selectedChannel === 'all' ? 'Tüm Yayınlar Arşivi' : `${selectedChannel} Yayın Arşivi`;
 
       const currentId = (filteredVideos[currentIndex] || {}).id;
 
-      // Render Up Next
       const upNextEl = document.getElementById('upNextList');
-      if (filteredVideos.length === 0) {
-        upNextEl.innerHTML = `<div style="padding:1.5rem;text-align:center;color:var(--text-dim);font-size:0.85rem;">Bu kategoride yayın bulunamadı.</div>`;
-      } else {
-        upNextEl.innerHTML = filteredVideos.map(v => `
-          <div class="upnext-card ${v.id === currentId ? 'active' : ''}" data-vid="${v.id}">
-            <div class="upnext-thumb">
-              <span class="upnext-badge-channel">${v.channel}</span>
-              <div class="upnext-play-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="6 4 20 12 6 20 6 4"></polygon>
-                </svg>
-              </div>
-              <span class="upnext-badge-hd">1080p</span>
+      upNextEl.innerHTML = filteredVideos.map(v => `
+        <div class="upnext-card ${v.id === currentId ? 'active' : ''}" data-vid="${v.id}">
+          <div class="upnext-thumb">
+            <div class="upnext-play-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 4 20 12 6 20 6 4"></polygon>
+              </svg>
             </div>
-            <div class="upnext-info">
-              <div class="upnext-title">${v.title}</div>
-              <div class="upnext-meta">
-                <span>${v.channel}</span>
-                <span>📅 ${v.date}</span>
-              </div>
+            <span class="upnext-badge-hd">1080p60</span>
+          </div>
+          <div class="upnext-info">
+            <div class="upnext-title">${v.title}</div>
+            <div class="upnext-meta">
+              <span>canbequit</span>
+              <span>📅 ${v.date}</span>
             </div>
           </div>
-        `).join('');
-      }
+        </div>
+      `).join('');
 
-      // Render Bottom Grid
       const gridEl = document.getElementById('catalogGrid');
-      if (filteredVideos.length === 0) {
-        gridEl.innerHTML = `<div style="grid-column:1/-1;padding:3rem;text-align:center;color:var(--text-dim);">Aramana uygun yayın bulunamadı.</div>`;
-      } else {
-        gridEl.innerHTML = filteredVideos.map(v => `
-          <article class="vod-card ${v.id === currentId ? 'active' : ''}" data-vid="${v.id}">
-            <div class="vod-card-thumb">
-              <span class="vod-card-date">${v.date}</span>
-              <span class="vod-card-channel">${v.channel}</span>
-              <div class="upnext-play-icon" style="width:46px;height:46px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="6 4 20 12 6 20 6 4"></polygon>
-                </svg>
-              </div>
+      gridEl.innerHTML = filteredVideos.map(v => `
+        <article class="vod-card ${v.id === currentId ? 'active' : ''}" data-vid="${v.id}">
+          <div class="vod-card-thumb">
+            <span class="vod-card-date">${v.date}</span>
+            <div class="upnext-play-icon" style="width:46px;height:46px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 4 20 12 6 20 6 4"></polygon>
+              </svg>
             </div>
-            <div class="vod-card-body">
-              <div class="vod-card-title">${v.title}</div>
-              <div class="vod-card-sub">
-                <span>${v.channel}</span>
-                <span>1080p60 VOD</span>
-              </div>
+            <span class="vod-card-tag">1080p60 VOD</span>
+          </div>
+          <div class="vod-card-body">
+            <div class="vod-card-title">${v.title}</div>
+            <div class="vod-card-sub">
+              <span>canbequit</span>
+              <span>Sadece Sitede İzle</span>
             </div>
-          </article>
-        `).join('');
-      }
+          </div>
+        </article>
+      `).join('');
 
       document.querySelectorAll('[data-vid]').forEach(card => {
         card.addEventListener('click', () => playById(card.dataset.vid, true));
@@ -997,19 +930,6 @@
         console.error(e);
       }
     }
-
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        selectedChannel = this.dataset.chan;
-        currentIndex = 0;
-        renderAll();
-        if (filteredVideos.length > 0) {
-          playById(filteredVideos[0].id, false);
-        }
-      });
-    });
 
     document.getElementById('searchInput').addEventListener('input', renderAll);
     document.getElementById('sortSelect').addEventListener('change', renderAll);
