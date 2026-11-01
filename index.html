@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>canbequit | Kick Yayın Arşivi (VOD)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0e0f;
+      --surface: #14171a;
+      --surface-hover: #1c2024;
+      --border: #24292e;
+      --kick-green: #53fc18;
+      --kick-green-dim: rgba(83, 252, 24, 0.14);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 14, 15, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .kick-badge {
+      background: var(--kick-green);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      max-width: 560px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 1rem 0.6rem 2.4rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--kick-green);
+      box-shadow: 0 0 0 3px var(--kick-green-dim);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    select:focus {
+      border-color: var(--kick-green);
+    }
+
+    .kick-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.55rem 0.9rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .kick-link:hover {
+      border-color: var(--kick-green);
+      color: var(--kick-green);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* Player Section */
+    .player-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .player-info {
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .now-playing-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .now-playing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--kick-green);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .now-playing-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .now-playing-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .player-actions {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.18s;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--kick-green);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #1d2226;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-muted);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .stats-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .pill strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* Grid */
+    .vod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.15rem;
+    }
+
+    .vod-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .vod-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(83, 252, 24, 0.55);
+      background: var(--surface-hover);
+    }
+
+    .vod-card.active {
+      border-color: var(--kick-green);
+      box-shadow: 0 0 0 2px var(--kick-green-dim);
+    }
+
+    .vod-thumb {
+      position: relative;
+      height: 168px;
+      background: radial-gradient(circle at 20% 20%, #1c2c18 0%, #0f1315 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .vod-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .play-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(83, 252, 24, 0.92);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(83, 252, 24, 0.35);
+      transition: transform 0.2s;
+    }
+
+    .vod-card:hover .play-circle {
+      transform: scale(1.1);
+    }
+
+    .thumb-date {
+      position: absolute;
+      top: 0.65rem;
+      left: 0.65rem;
+      background: rgba(11, 14, 15, 0.85);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.22rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .thumb-size {
+      position: absolute;
+      bottom: 0.65rem;
+      right: 0.65rem;
+      background: rgba(11, 14, 15, 0.88);
+      color: var(--kick-green);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+    }
+
+    .vod-body {
+      padding: 0.95rem 1.05rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      flex: 1;
+    }
+
+    .vod-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .vod-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.45rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3.5rem 1rem;
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .controls {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="#" class="brand">
+        <span class="kick-badge">KICK VOD</span>
+        <div>
+          <div class="brand-title">canbequit</div>
+          <div class="brand-sub">Otomatik Yayın Arşivi (1080p60)</div>
+        </div>
+      </a>
+
+      <div class="controls">
+        <div class="search-box">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Yayın başlığı veya tarih ara (Örn: Fenerbahçe, Stake, 2026-10)..." />
+        </div>
+        <select id="sortSelect">
+          <option value="newest">En Yeni Önce</option>
+          <option value="oldest">En Eski Önce</option>
+          <option value="largest">Boyut (Büyükten)</option>
+        </select>
+      </div>
+
+      <a href="https://kick.com/canbequit" target="_blank" rel="noopener" class="kick-link">
+        <span>Canlı Kanalı Aç</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Video Player -->
+    <section class="player-section" id="playerSection">
+      <div class="video-wrapper">
+        <iframe id="videoFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="player-info">
+        <div class="now-playing-meta">
+          <span class="now-playing-badge">● ŞU AN OYNATILIYOR</span>
+          <h1 class="now-playing-title" id="currentTitle">Yükleniyor...</h1>
+          <div class="now-playing-sub" id="currentSub">-</div>
+        </div>
+        <div class="player-actions">
+          <a id="openDriveBtn" href="#" target="_blank" rel="noopener" class="btn btn-primary">
+            Drive'da Aç / Tam Kalite İzle
+          </a>
+          <a id="downloadBtn" href="#" target="_blank" rel="noopener" class="btn btn-secondary">
+            Bilgisayara İndir
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stats-pills">
+        <div class="pill">Toplam Yayın: <strong id="statCount">0</strong></div>
+        <div class="pill">Toplam Arşiv Boyutu: <strong id="statSize">0 GB</strong></div>
+        <div class="pill">Otomatik Senkronizasyon: <strong>2 Saatte Bir</strong></div>
+      </div>
+    </div>
+
+    <!-- VOD Grid -->
+    <div class="vod-grid" id="vodGrid">
+      <div class="empty-state">Yayın listesi yükleniyor...</div>
+    </div>
+  </main>
+
+  <footer>
+    canbequit Kick VOD Arşivi • Videolar Google Drive üzerinden doğrudan 1080p60 olarak sunulmaktadır.
+  </footer>
+
+  <script>
+    let allVideos = [];
+    let currentVideoId = null;
+
+    function formatSize(bytes) {
+      const gb = Number(bytes) / (1024 ** 3);
+      return gb >= 1 ? gb.toFixed(1) + ' GB' : (Number(bytes) / (1024 ** 2)).toFixed(0) + ' MB';
+    }
+
+    function parseVideoMeta(item) {
+      const cleanName = item.name.replace(/\.mp4$/i, '');
+      const m = cleanName.match(/^(\d{4}-\d{2}-\d{2})\s*-\s*(.+)$/);
+      return {
+        id: item.id,
+        rawName: item.name,
+        date: m ? m[1] : (item.modifiedTime ? item.modifiedTime.slice(0, 10) : 'Tarihsiz'),
+        title: m ? m[2].trim() : cleanName,
+        size: Number(item.size || 0),
+        sizeText: formatSize(item.size || 0)
+      };
+    }
+
+    function selectVideo(v, scroll = false) {
+      currentVideoId = v.id;
+      document.getElementById('videoFrame').src = `https://drive.google.com/file/d/${v.id}/preview`;
+      document.getElementById('currentTitle').textContent = v.title;
+      document.getElementById('currentSub').textContent = `Yayın Tarihi: ${v.date} • Boyut: ${v.sizeText} • Orjinal 1080p60 Kayıt`;
+      document.getElementById('openDriveBtn').href = `https://drive.google.com/file/d/${v.id}/view`;
+      document.getElementById('downloadBtn').href = `https://drive.google.com/uc?id=${v.id}&export=download`;
+
+      document.querySelectorAll('.vod-card').forEach(card => {
+        card.classList.toggle('active', card.dataset.id === v.id);
+      });
+
+      if (scroll) {
+        document.getElementById('playerSection').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function renderGrid() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const sortBy = document.getElementById('sortSelect').value;
+
+      let filtered = allVideos.filter(v =>
+        v.title.toLowerCase().includes(query) || v.date.toLowerCase().includes(query)
+      );
+
+      filtered.sort((a, b) => {
+        if (sortBy === 'newest') return b.date.localeCompare(a.date) || b.title.localeCompare(a.title);
+        if (sortBy === 'oldest') return a.date.localeCompare(b.date) || a.title.localeCompare(b.title);
+        if (sortBy === 'largest') return b.size - a.size;
+        return 0;
+      });
+
+      const grid = document.getElementById('vodGrid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="empty-state">Aramana uygun yayın bulunamadı.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(v => `
+        <article class="vod-card ${v.id === currentVideoId ? 'active' : ''}" data-id="${v.id}">
+          <div class="vod-thumb">
+            <span class="thumb-date">${v.date}</span>
+            <div class="play-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 4 20 12 6 20 6 4"></polygon>
+              </svg>
+            </div>
+            <span class="thumb-size">${v.sizeText}</span>
+          </div>
+          <div class="vod-body">
+            <h3 class="vod-title">${v.title}</h3>
+            <div class="vod-footer">
+              <span>canbequit</span>
+              <span>1080p60 VOD</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('.vod-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const video = allVideos.find(x => x.id === card.dataset.id);
+          if (video) selectVideo(video, true);
+        });
+      });
+    }
+
+    async function init() {
+      try {
+        const res = await fetch('videos.json?t=' + Date.now());
+        const raw = await res.json();
+
+        // Aynı isimli mükerrer dosyaları filtrele
+        const seenNames = new Set();
+        const unique = [];
+        for (const item of raw) {
+          if (!item.name || !item.name.toLowerCase().endsWith('.mp4')) continue;
+          if (seenNames.has(item.name)) continue;
+          seenNames.add(item.name);
+          unique.push(parseVideoMeta(item));
+        }
+
+        allVideos = unique;
+        allVideos.sort((a, b) => b.date.localeCompare(a.date));
+
+        const totalBytes = allVideos.reduce((acc, v) => acc + v.size, 0);
+        document.getElementById('statCount').textContent = allVideos.length;
+        document.getElementById('statSize').textContent = (totalBytes / (1024 ** 3)).toFixed(1) + ' GB';
+
+        if (allVideos.length > 0) {
+          selectVideo(allVideos[0], false);
+        }
+        renderGrid();
+      } catch (err) {
+        document.getElementById('vodGrid').innerHTML = `<div class="empty-state">Yayın listesi yüklenirken bir hata oluştu.</div>`;
+      }
+    }
+
+    document.getElementById('searchInput').addEventListener('input', renderGrid);
+    document.getElementById('sortSelect').addEventListener('change', renderGrid);
+    init();
+  </script>
+</body>
+</html>
